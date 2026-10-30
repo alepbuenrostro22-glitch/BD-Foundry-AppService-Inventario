@@ -6,7 +6,7 @@ const router = express.Router();
 
 const { verificarToken } = require("../middleware/auth");
 const {
-  registrarEntrada,
+  procesarInstruccionInteligente,
   obtenerInventario,
   actualizarRegistro,
   eliminarRegistro,
@@ -15,10 +15,10 @@ const {
 // [GET] Leer todo el inventario
 router.get("/", verificarToken, obtenerInventario);
 
-// [POST] Crear un nuevo registro vía IA
-router.post("/registrar", verificarToken, registrarEntrada);
+// [POST] Procesar texto con IA (Crea o Actualiza según la intención)
+router.post("/procesar", verificarToken, procesarInstruccionInteligente);
 
-// [PUT] Actualizar un registro específico por su ID
+// [PUT] Actualizar un registro específico por su ID (Manual)
 router.put("/:id", verificarToken, actualizarRegistro);
 
 // [DELETE] Eliminar un registro específico por su ID
